@@ -29,6 +29,9 @@ public class UnicaEntradaServlet extends HttpServlet {
 <<<<<<< Updated upstream
 =======
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao;
 
