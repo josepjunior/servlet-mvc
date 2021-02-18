@@ -9,12 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.alura.gerenciador.acoes.AlteraEmpresa;
-import br.com.alura.gerenciador.acoes.ListaEmpresas;
-import br.com.alura.gerenciador.acoes.MostraEmpresa;
-import br.com.alura.gerenciador.acoes.NovaEmpresa;
-import br.com.alura.gerenciador.acoes.NovaEmpresaForm;
-import br.com.alura.gerenciador.acoes.RemoveEmpresa;
+import br.com.alura.gerenciador.acao.Acao;
 
 /**
  * Servlet implementation class UnicaEntradaServlet
@@ -30,41 +25,18 @@ public class UnicaEntradaServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String nome = null;
-
 		String paramAcao = request.getParameter("acao");
+		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao;
 
-		if (paramAcao.equals("ListaEmpresas")) {
-
-			ListaEmpresas acao = new ListaEmpresas();
-			nome = acao.executa(request, response);
-
-		} else if (paramAcao.equals("RemoveEmpresa")) {
-
-			RemoveEmpresa acao = new RemoveEmpresa();
-			nome = acao.executa(request, response);
-
-		} else if (paramAcao.equals("MostraEmpresa")) {
-
-			MostraEmpresa acao = new MostraEmpresa();
-			nome =  acao.executa(request, response);
-
-		} else if (paramAcao.equals("AlteraEmpresa")) {
-
-			AlteraEmpresa acao = new AlteraEmpresa();
-			nome = acao.executa(request, response);
-
-		} else if (paramAcao.equals("NovaEmpresa")) {
-
-			NovaEmpresa acao = new NovaEmpresa();
-			nome = acao.executa(request, response);
-
-		} else if (paramAcao.equals("NovaEmpresaForm")) {
-
-			NovaEmpresaForm acao = new NovaEmpresaForm();
-			nome = acao.executa(request, response);
-
+		String nome;
+		try {
+		    Class classe = Class.forName(nomeDaClasse);//carrega a classe com o nome 
+		    Acao acao = (Acao) classe.newInstance(); 
+		    nome = acao.executa(request, response);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+		    throw new ServletException(e);
 		}
+	    
 
 		String[] tipoEEndereco = nome.split(":");
 		if (tipoEEndereco[0].equals("forward")) {
