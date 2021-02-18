@@ -26,6 +26,10 @@ public class UnicaEntradaServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String paramAcao = request.getParameter("acao");
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao;
 
 		String nome;
