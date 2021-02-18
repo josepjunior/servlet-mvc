@@ -36,6 +36,7 @@ public class UnicaEntradaServlet extends HttpServlet {
 			return;
 		}
 
+		//Pool
 		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao;
 
 		String nome;
