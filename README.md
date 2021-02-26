@@ -1,4 +1,4 @@
-## Objetivo do projeto
+## servlet-mvc
 #### Projeto resultado do aprendizado dos conceitos de aplicações web java com servlets, JSP e EX utilizando padrão MVC:
  - Fluxos de requisição
  - Tratamento de requisição
